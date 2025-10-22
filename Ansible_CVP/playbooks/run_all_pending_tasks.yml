@@ -14,7 +14,7 @@
     - name: Show CVP_FACTS formatted
       debug:
         msg: "{{ CVP_FACTS | to_yaml }}"
-    - name: Write CVP_CHANGE output to a file
+    - name: Write CVP_FACTS output to a file
       copy:
-        content: "{{ CVP_FACTS | to_nice_json }}"
+        content: "{{ CVP_FACTS | to_yaml }}"
         dest: "./cvp_facts_debug.yml"

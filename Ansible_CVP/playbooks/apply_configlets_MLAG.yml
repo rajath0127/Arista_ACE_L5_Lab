@@ -15,5 +15,10 @@
     - name: Run tasks from previous task
       arista.cvp.cv_task_v3:
         tasks: "{{ CVP_CHANGE.taskIds }}"
-    
-    
+    - name: Show CVP_CHANGE formatted
+      debug:
+        msg: "{{ CVP_CHANGE | to_yaml }}"
+    - name: Write CVP_CHANGE output to a file
+      copy:
+        content: "{{ CVP_CHANGE | to_yaml }}"
+        dest: "./cvp_change_debug.yml"

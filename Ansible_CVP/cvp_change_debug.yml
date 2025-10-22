@@ -1,0 +1,59 @@
+bundle_attached:
+  bundle_attached_count: 0
+  bundle_attached_list: []
+  changed: false
+  diff: {}
+  errors: []
+  success: false
+  taskIds: []
+  warnings: []
+bundle_detached:
+  bundle_detached_count: 0
+  bundle_detached_list: []
+  changed: false
+  diff: {}
+  errors: []
+  success: false
+  taskIds: []
+  warnings: []
+changed: true
+configlets_attached:
+  changed: true
+  configlets_attached_count: 12
+  configlets_attached_list: [leaf1_configlet_attached, leaf2_configlet_attached, leaf3_configlet_attached,
+    leaf4_configlet_attached]
+  diff: {}
+  errors: []
+  success: true
+  taskIds: ['60', '61', '62', '63']
+  warnings: []
+configlets_detached:
+  changed: false
+  configlets_detached_count: 0
+  configlets_detached_list: []
+  diff: {}
+  errors: []
+  success: false
+  taskIds: []
+  warnings: []
+devices_deployed:
+  changed: false
+  devices_deployed_count: 0
+  devices_deployed_list: []
+  diff: {}
+  errors: []
+  success: false
+  taskIds: []
+  warnings: []
+devices_moved:
+  changed: false
+  devices_moved_count: 0
+  devices_moved_list: []
+  diff: {}
+  errors: []
+  success: false
+  taskIds: []
+  warnings: []
+failed: false
+success: true
+taskIds: ['60', '63', '61', '62']
