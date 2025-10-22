@@ -1,0 +1,20 @@
+---
+- name: Run all pending tasks on CVP
+  hosts: cvp1
+  tasks:
+    - name: Grab and register facts
+      arista.cvp.cv_facts_v3:
+        facts: 
+          - tasks
+        regexp_filter: 'Pending'
+      register: CVP_FACTS
+    - name: Run pending tasks
+      arista.cvp.cv_task_v3:
+        tasks: "{{ CVP_FACTS.data.cvp_tasks | list }}"
+    - name: Show CVP_FACTS formatted
+      debug:
+        msg: "{{ CVP_FACTS | to_yaml }}"
+    - name: Write CVP_CHANGE output to a file
+      copy:
+        content: "{{ CVP_FACTS | to_nice_json }}"
+        dest: "./cvp_facts_debug.yml"
