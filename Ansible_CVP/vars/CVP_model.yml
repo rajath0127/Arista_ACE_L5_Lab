@@ -1,5 +1,5 @@
 ---
-path: "{{lookup('env','PWD')}}"
+path: "{{ lookup('env','PWD') }}"
 
 CVP_CONFIGLETS:
   Alias_test: “alias ship show ip interface brief”
