@@ -61,25 +61,31 @@ spine:
       id: 11
       mgmt_ip: 192.168.0.11/24
       structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.101/32
+        loopback_interfaces:
+          Loopback0:
+            ip_address: 172.16.0.101/32
+        router_bgp:
+          router_id: 172.16.0.101
         
     - name: spine2
       id: 12
       mgmt_ip: 192.168.0.12/24
       structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.102/32
+        loopback_interfaces:
+          Loopback0:
+            ip_address: 172.16.0.102/32
+        router_bgp:
+          router_id: 172.16.0.102
             
     - name: spine3
       id: 13
       mgmt_ip: 192.168.0.13/24
       structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.103/32
+        loopback_interfaces:
+          Loopback0:
+            ip_address: 172.16.0.103/32
+        router_bgp:
+          router_id: 172.16.0.103
             
       
 # Leaf switches. Most leafs will be l3leaf, not l2leaf.
@@ -112,6 +118,8 @@ l3leaf:
                 ip_address: 172.16.0.71/32
               Loopback1:
                 ip_address: 172.16.1.71/32
+            router_bgp:
+              router_id: 172.16.0.71
                       
         - name: leaf2
           id: 2
@@ -122,6 +130,8 @@ l3leaf:
                 ip_address: 172.16.0.72/32
               Loopback1:
                 ip_address: 172.16.1.71/32
+            router_bgp:
+              router_id: 172.16.0.72
                      
     - group: mlag2
       bgp_as: 65003 # Overriden automatic allocation for host4/R1 peering
@@ -135,6 +145,8 @@ l3leaf:
                 ip_address: 172.16.0.73/32
               Loopback1:
                 ip_address: 172.16.1.73/32
+            router_bgp:
+              router_id: 172.16.0.73
                       
         - name: leaf4
           id: 4
@@ -145,6 +157,8 @@ l3leaf:
                 ip_address: 172.16.0.74/32
               Loopback1:
                 ip_address: 172.16.1.73/32
+            router_bgp:
+              router_id: 172.16.0.74
                    
           
 
