@@ -7,46 +7,46 @@ fabric_type: l3ls-evpn
 # Enable vlan aware bundles
 evpn_vlan_aware_bundles: false
 
-core_interfaces:
-  p2p_links:
-    - nodes: [spine1, leaf1]
-      interfaces: [Ethernet3, Ethernet3]
-      ip: [10.10.1.1/30, 10.10.1.2/30]
-    - nodes: [spine1, leaf2]
-      interfaces: [Ethernet4, Ethernet3]
-      ip: [10.10.1.5/30, 10.10.1.6/30]
-    - nodes: [spine1, leaf3]
-      interfaces: [Ethernet5, Ethernet3]
-      ip: [10.10.1.9/30, 10.10.1.10/30]
-    - nodes: [spine1, leaf4]
-      interfaces: [Ethernet6, Ethernet3]
-      ip: [10.10.1.13/30, 10.10.1.14/30]
+# core_interfaces:
+#   p2p_links:
+#     - nodes: [spine1, leaf1]
+#       interfaces: [Ethernet3, Ethernet3]
+#       ip: [10.10.1.1/30, 10.10.1.2/30]
+#     - nodes: [spine1, leaf2]
+#       interfaces: [Ethernet4, Ethernet3]
+#       ip: [10.10.1.5/30, 10.10.1.6/30]
+#     - nodes: [spine1, leaf3]
+#       interfaces: [Ethernet5, Ethernet3]
+#       ip: [10.10.1.9/30, 10.10.1.10/30]
+#     - nodes: [spine1, leaf4]
+#       interfaces: [Ethernet6, Ethernet3]
+#       ip: [10.10.1.13/30, 10.10.1.14/30]
 
-    - nodes: [spine2, leaf1]
-      interfaces: [Ethernet3, Ethernet4]
-      ip: [10.10.2.1/30, 10.10.2.2/30]
-    - nodes: [spine2, leaf2]
-      interfaces: [Ethernet4, Ethernet4]
-      ip: [10.10.2.5/30, 10.10.2.6/30]
-    - nodes: [spine2, leaf3]
-      interfaces: [Ethernet5, Ethernet4]
-      ip: [10.10.2.9/30, 10.10.2.10/30]
-    - nodes: [spine2, leaf4]
-      interfaces: [Ethernet6, Ethernet4]
-      ip: [10.10.2.13/30, 10.10.2.14/30]
+#     - nodes: [spine2, leaf1]
+#       interfaces: [Ethernet3, Ethernet4]
+#       ip: [10.10.2.1/30, 10.10.2.2/30]
+#     - nodes: [spine2, leaf2]
+#       interfaces: [Ethernet4, Ethernet4]
+#       ip: [10.10.2.5/30, 10.10.2.6/30]
+#     - nodes: [spine2, leaf3]
+#       interfaces: [Ethernet5, Ethernet4]
+#       ip: [10.10.2.9/30, 10.10.2.10/30]
+#     - nodes: [spine2, leaf4]
+#       interfaces: [Ethernet6, Ethernet4]
+#       ip: [10.10.2.13/30, 10.10.2.14/30]
 
-    - nodes: [spine3, leaf1]
-      interfaces: [Ethernet3, Ethernet5]
-      ip: [10.10.3.1/30, 10.10.3.2/30]
-    - nodes: [spine3, leaf2]
-      interfaces: [Ethernet4, Ethernet5]
-      ip: [10.10.3.5/30, 10.10.3.6/30]
-    - nodes: [spine3, leaf3]
-      interfaces: [Ethernet5, Ethernet5]
-      ip: [10.10.3.9/30, 10.10.3.10/30]
-    - nodes: [spine3, leaf4]
-      interfaces: [Ethernet6, Ethernet5]
-      ip: [10.10.3.13/30, 10.10.3.14/30]
+#     - nodes: [spine3, leaf1]
+#       interfaces: [Ethernet3, Ethernet5]
+#       ip: [10.10.3.1/30, 10.10.3.2/30]
+#     - nodes: [spine3, leaf2]
+#       interfaces: [Ethernet4, Ethernet5]
+#       ip: [10.10.3.5/30, 10.10.3.6/30]
+#     - nodes: [spine3, leaf3]
+#       interfaces: [Ethernet5, Ethernet5]
+#       ip: [10.10.3.9/30, 10.10.3.10/30]
+#     - nodes: [spine3, leaf4]
+#       interfaces: [Ethernet6, Ethernet5]
+#       ip: [10.10.3.13/30, 10.10.3.14/30]
 
 
 # Spine Switches
@@ -60,82 +60,82 @@ spine:
     - name: spine1
       id: 11
       mgmt_ip: 192.168.0.11/24
-      structured_config:
-        loopback_interfaces:
-          Loopback0:
-            ip_address: 172.16.0.101/32
-        interfaces:
-          Ethernet3:
-            description: P2P-to-Leaf1
-            ip_address: 10.10.1.1/30
-          Ethernet4:
-            description: P2P-to-Leaf2
-            ip_address: 10.10.1.5/30
-          Ethernet5:
-            description: P2P-to-Leaf3
-            ip_address: 10.10.1.9/30
-          Ethernet6:
-            description: P2P-to-Leaf4
-            ip_address: 10.10.1.13/30
-        router_bgp:
-          router_id: 172.16.0.101
+      # structured_config:
+      #   loopback_interfaces:
+      #     Loopback0:
+      #       ip_address: 172.16.0.101/32
+      #   interfaces:
+      #     Ethernet3:
+      #       description: P2P-to-Leaf1
+      #       ip_address: 10.10.1.1/30
+      #     Ethernet4:
+      #       description: P2P-to-Leaf2
+      #       ip_address: 10.10.1.5/30
+      #     Ethernet5:
+      #       description: P2P-to-Leaf3
+      #       ip_address: 10.10.1.9/30
+      #     Ethernet6:
+      #       description: P2P-to-Leaf4
+      #       ip_address: 10.10.1.13/30
+      #   router_bgp:
+      #     router_id: 172.16.0.101
 
     - name: spine2
       id: 12
       mgmt_ip: 192.168.0.12/24
-      structured_config:
-        loopback_interfaces:
-          Loopback0:
-            ip_address: 172.16.0.102/32
-        interfaces:
-          Ethernet3:
-            description: P2P-to-Leaf1
-            ip_address: 10.10.2.1/30
-          Ethernet4:
-            description: P2P-to-Leaf2
-            ip_address: 10.10.2.5/30
-          Ethernet5:
-            description: P2P-to-Leaf3
-            ip_address: 10.10.2.9/30
-          Ethernet6:
-            description: P2P-to-Leaf4
-            ip_address: 10.10.2.13/30
-        router_bgp:
-          router_id: 172.16.0.102
+      # structured_config:
+      #   loopback_interfaces:
+      #     Loopback0:
+      #       ip_address: 172.16.0.102/32
+      #   interfaces:
+      #     Ethernet3:
+      #       description: P2P-to-Leaf1
+      #       ip_address: 10.10.2.1/30
+      #     Ethernet4:
+      #       description: P2P-to-Leaf2
+      #       ip_address: 10.10.2.5/30
+      #     Ethernet5:
+      #       description: P2P-to-Leaf3
+      #       ip_address: 10.10.2.9/30
+      #     Ethernet6:
+      #       description: P2P-to-Leaf4
+      #       ip_address: 10.10.2.13/30
+      #   router_bgp:
+      #     router_id: 172.16.0.102
 
     - name: spine3
       id: 13
       mgmt_ip: 192.168.0.13/24
-      structured_config:
-        loopback_interfaces:
-          Loopback0:
-            ip_address: 172.16.0.103/32
-        interfaces:
-          Ethernet3:
-            description: P2P-to-Leaf1
-            ip_address: 10.10.3.1/30
-          Ethernet4:
-            description: P2P-to-Leaf2
-            ip_address: 10.10.3.5/30
-          Ethernet5:
-            description: P2P-to-Leaf3
-            ip_address: 10.10.3.9/30
-          Ethernet6:
-            description: P2P-to-Leaf4
-            ip_address: 10.10.3.13/30
-        router_bgp:
-          router_id: 172.16.0.103
+      # structured_config:
+      #   loopback_interfaces:
+      #     Loopback0:
+      #       ip_address: 172.16.0.103/32
+      #   interfaces:
+      #     Ethernet3:
+      #       description: P2P-to-Leaf1
+      #       ip_address: 10.10.3.1/30
+      #     Ethernet4:
+      #       description: P2P-to-Leaf2
+      #       ip_address: 10.10.3.5/30
+      #     Ethernet5:
+      #       description: P2P-to-Leaf3
+      #       ip_address: 10.10.3.9/30
+      #     Ethernet6:
+      #       description: P2P-to-Leaf4
+      #       ip_address: 10.10.3.13/30
+      #   router_bgp:
+      #     router_id: 172.16.0.103
 
 # Leaf switches. Most leafs will be l3leaf, not l2leaf.
 l3leaf:
   defaults:
     bgp_as: 65101-65105 # Gives a range which will be auto-assigned
     platform: cEOS-lab
-    loopback_ipv4_pool: 172.16.0.0/24 # This is loopback0 (underlay)
-    vtep_loopback_ipv4_pool: 172.16.1.0/24 # This is loopback1 (VTEP)
-    #uplink_interfaces: [Ethernet3, Ethernet4, Ethernet5] # Leaf uplinks
-    #uplink_switches: [spine1, spine2, spine3] # Where the leaf uplinks go
-    #uplink_ipv4_pool: 10.10.0.0/22 # For the p2p interfaces to chopped up into /31s
+    loopback_ipv4_pool: 172.16.0.0/28 # This is loopback0 (underlay)
+    vtep_loopback_ipv4_pool: 172.16.1.0/28 # This is loopback1 (VTEP)
+    uplink_interfaces: [Ethernet3, Ethernet4, Ethernet5] # Leaf uplinks
+    uplink_switches: [spine1, spine2, spine3] # Where the leaf uplinks go
+    uplink_ipv4_pool: 10.10.1.0/24 # For the p2p interfaces to chopped up into /31s
     mlag_interfaces: [Ethernet1, Ethernet2] # MLAG peer link
     mlag_peer_ipv4_pool: 10.255.252.0/24 # MLAG peer IPs
     mlag_peer_l3_ipv4_pool: 10.255.251.0/24 # iBGP peering between MLAG peers
@@ -151,46 +151,46 @@ l3leaf:
           id: 1
           mgmt_ip: 192.168.0.21/24
           uplink_switch_interfaces: [Ethernet3, Ethernet3, Ethernet3]
-          structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.71/32
-              Loopback1:
-                ip_address: 172.16.1.71/32
-            interfaces:
-              Ethernet3:
-                description: P2P-to-Spine1
-                ip_address: 10.10.1.2/30
-              Ethernet4:
-                description: P2P-to-Spine2
-                ip_address: 10.10.2.2/30
-              Ethernet5:
-                description: P2P-to-Spine3
-                ip_address: 10.10.3.2/30
-            router_bgp:
-              router_id: 172.16.0.71
+          # structured_config:
+          #   loopback_interfaces:
+          #     Loopback0:
+          #       ip_address: 172.16.0.71/32
+          #     Loopback1:
+          #       ip_address: 172.16.1.71/32
+          #   interfaces:
+          #     Ethernet3:
+          #       description: P2P-to-Spine1
+          #       ip_address: 10.10.1.2/30
+          #     Ethernet4:
+          #       description: P2P-to-Spine2
+          #       ip_address: 10.10.2.2/30
+          #     Ethernet5:
+          #       description: P2P-to-Spine3
+          #       ip_address: 10.10.3.2/30
+          #   router_bgp:
+          #     router_id: 172.16.0.71
         - name: leaf2
           id: 2
           mgmt_ip: 192.168.0.22/24
           uplink_switch_interfaces: [Ethernet4, Ethernet4, Ethernet4]
-          structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.72/32
-              Loopback1:
-                ip_address: 172.16.1.71/32
-            interfaces:
-              Ethernet3:
-                description: P2P-to-Spine1
-                ip_address: 10.10.1.6/30
-              Ethernet4:
-                description: P2P-to-Spine2
-                ip_address: 10.10.2.6/30
-              Ethernet5:
-                description: P2P-to-Spine3
-                ip_address: 10.10.3.6/30
-            router_bgp:
-              router_id: 172.16.0.72
+          # structured_config:
+          #   loopback_interfaces:
+          #     Loopback0:
+          #       ip_address: 172.16.0.72/32
+          #     Loopback1:
+          #       ip_address: 172.16.1.71/32
+          #   interfaces:
+          #     Ethernet3:
+          #       description: P2P-to-Spine1
+          #       ip_address: 10.10.1.6/30
+          #     Ethernet4:
+          #       description: P2P-to-Spine2
+          #       ip_address: 10.10.2.6/30
+          #     Ethernet5:
+          #       description: P2P-to-Spine3
+          #       ip_address: 10.10.3.6/30
+          #   router_bgp:
+          #     router_id: 172.16.0.72
     - group: mlag2
       bgp_as: 65103 # Overriden automatic allocation for host4/R1 peering
       nodes:
@@ -198,46 +198,46 @@ l3leaf:
           id: 3
           mgmt_ip: 192.168.0.23/24
           uplink_switch_interfaces: [Ethernet5, Ethernet5, Ethernet5]
-          structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.73/32
-              Loopback1:
-                ip_address: 172.16.1.73/32
-            interfaces:
-              Ethernet3:
-                description: P2P-to-Spine1
-                ip_address: 10.10.1.10/30
-              Ethernet4:
-                description: P2P-to-Spine2
-                ip_address: 10.10.2.10/30
-              Ethernet5:
-                description: P2P-to-Spine3
-                ip_address: 10.10.3.10/30
-            router_bgp:
-              router_id: 172.16.0.73
+          # structured_config:
+          #   loopback_interfaces:
+          #     Loopback0:
+          #       ip_address: 172.16.0.73/32
+          #     Loopback1:
+          #       ip_address: 172.16.1.73/32
+          #   interfaces:
+          #     Ethernet3:
+          #       description: P2P-to-Spine1
+          #       ip_address: 10.10.1.10/30
+          #     Ethernet4:
+          #       description: P2P-to-Spine2
+          #       ip_address: 10.10.2.10/30
+          #     Ethernet5:
+          #       description: P2P-to-Spine3
+          #       ip_address: 10.10.3.10/30
+          #   router_bgp:
+          #     router_id: 172.16.0.73
         - name: leaf4
           id: 4
           mgmt_ip: 192.168.0.24/24
           uplink_switch_interfaces: [Ethernet6, Ethernet6, Ethernet6]
-          structured_config:
-            loopback_interfaces:
-              Loopback0:
-                ip_address: 172.16.0.74/32
-              Loopback1:
-                ip_address: 172.16.1.73/32
-            interfaces:
-              Ethernet3:
-                description: P2P-to-Spine1
-                ip_address: 10.10.1.14/30
-              Ethernet4:
-                description: P2P-to-Spine2
-                ip_address: 10.10.2.14/30
-              Ethernet5:
-                description: P2P-to-Spine3
-                ip_address: 10.10.3.14/30
-            router_bgp:
-              router_id: 172.16.0.74
+          # structured_config:
+          #   loopback_interfaces:
+          #     Loopback0:
+          #       ip_address: 172.16.0.74/32
+          #     Loopback1:
+          #       ip_address: 172.16.1.73/32
+          #   interfaces:
+          #     Ethernet3:
+          #       description: P2P-to-Spine1
+          #       ip_address: 10.10.1.14/30
+          #     Ethernet4:
+          #       description: P2P-to-Spine2
+          #       ip_address: 10.10.2.14/30
+          #     Ethernet5:
+          #       description: P2P-to-Spine3
+          #       ip_address: 10.10.3.14/30
+          #   router_bgp:
+          #     router_id: 172.16.0.74
 
 
 

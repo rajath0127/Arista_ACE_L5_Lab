@@ -59,53 +59,55 @@
 
 | Uplink IPv4 Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ---------------- | ------------------- | ------------------ | ------------------ |
+| 10.10.1.0/24 | 256 | 24 | 9.38 % |
 
 ### Point-To-Point Links Node Allocation
 
 | Node | Node Interface | Node IP Address | Peer Node | Peer Interface | Peer IP Address |
 | ---- | -------------- | --------------- | --------- | -------------- | --------------- |
-| leaf1 | Ethernet3 | 10.10.1.2/30 | spine1 | Ethernet3 | 10.10.1.1/30 |
-| leaf1 | Ethernet4 | 10.10.2.2/30 | spine2 | Ethernet3 | 10.10.2.1/30 |
-| leaf1 | Ethernet5 | 10.10.3.2/30 | spine3 | Ethernet3 | 10.10.3.1/30 |
-| leaf2 | Ethernet3 | 10.10.1.6/30 | spine1 | Ethernet4 | 10.10.1.5/30 |
-| leaf2 | Ethernet4 | 10.10.2.6/30 | spine2 | Ethernet4 | 10.10.2.5/30 |
-| leaf2 | Ethernet5 | 10.10.3.6/30 | spine3 | Ethernet4 | 10.10.3.5/30 |
-| leaf3 | Ethernet3 | 10.10.1.10/30 | spine1 | Ethernet5 | 10.10.1.9/30 |
-| leaf3 | Ethernet4 | 10.10.2.10/30 | spine2 | Ethernet5 | 10.10.2.9/30 |
-| leaf3 | Ethernet5 | 10.10.3.10/30 | spine3 | Ethernet5 | 10.10.3.9/30 |
-| leaf4 | Ethernet3 | 10.10.1.14/30 | spine1 | Ethernet6 | 10.10.1.13/30 |
-| leaf4 | Ethernet4 | 10.10.2.14/30 | spine2 | Ethernet6 | 10.10.2.13/30 |
-| leaf4 | Ethernet5 | 10.10.3.14/30 | spine3 | Ethernet6 | 10.10.3.13/30 |
+| leaf1 | Ethernet3 | 10.10.1.1/31 | spine1 | Ethernet3 | 10.10.1.0/31 |
+| leaf1 | Ethernet4 | 10.10.1.3/31 | spine2 | Ethernet3 | 10.10.1.2/31 |
+| leaf1 | Ethernet5 | 10.10.1.5/31 | spine3 | Ethernet3 | 10.10.1.4/31 |
+| leaf2 | Ethernet3 | 10.10.1.7/31 | spine1 | Ethernet4 | 10.10.1.6/31 |
+| leaf2 | Ethernet4 | 10.10.1.9/31 | spine2 | Ethernet4 | 10.10.1.8/31 |
+| leaf2 | Ethernet5 | 10.10.1.11/31 | spine3 | Ethernet4 | 10.10.1.10/31 |
+| leaf3 | Ethernet3 | 10.10.1.13/31 | spine1 | Ethernet5 | 10.10.1.12/31 |
+| leaf3 | Ethernet4 | 10.10.1.15/31 | spine2 | Ethernet5 | 10.10.1.14/31 |
+| leaf3 | Ethernet5 | 10.10.1.17/31 | spine3 | Ethernet5 | 10.10.1.16/31 |
+| leaf4 | Ethernet3 | 10.10.1.19/31 | spine1 | Ethernet6 | 10.10.1.18/31 |
+| leaf4 | Ethernet4 | 10.10.1.21/31 | spine2 | Ethernet6 | 10.10.1.20/31 |
+| leaf4 | Ethernet5 | 10.10.1.23/31 | spine3 | Ethernet6 | 10.10.1.22/31 |
 
 ### Loopback Interfaces (BGP EVPN Peering)
 
 | Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ------------- | ------------------- | ------------------ | ------------------ |
 | 172.16.0.0/24 | 256 | 7 | 2.74 % |
+| 172.16.0.0/28 | 16 | 7 | 43.75 % |
 
 ### Loopback0 Interfaces Node Allocation
 
 | POD | Node | Loopback0 |
 | --- | ---- | --------- |
-| FABRIC | leaf1 | 172.16.0.71/32 |
-| FABRIC | leaf2 | 172.16.0.72/32 |
-| FABRIC | leaf3 | 172.16.0.73/32 |
-| FABRIC | leaf4 | 172.16.0.74/32 |
-| FABRIC | spine1 | 172.16.0.101/32 |
-| FABRIC | spine2 | 172.16.0.102/32 |
-| FABRIC | spine3 | 172.16.0.103/32 |
+| FABRIC | leaf1 | 172.16.0.1/32 |
+| FABRIC | leaf2 | 172.16.0.2/32 |
+| FABRIC | leaf3 | 172.16.0.3/32 |
+| FABRIC | leaf4 | 172.16.0.4/32 |
+| FABRIC | spine1 | 172.16.0.11/32 |
+| FABRIC | spine2 | 172.16.0.12/32 |
+| FABRIC | spine3 | 172.16.0.13/32 |
 
 ### VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)
 
 | VTEP Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | --------------------- | ------------------- | ------------------ | ------------------ |
-| 172.16.1.0/24 | 256 | 4 | 1.57 % |
+| 172.16.1.0/28 | 16 | 4 | 25.0 % |
 
 ### VTEP Loopback Node allocation
 
 | POD | Node | Loopback1 |
 | --- | ---- | --------- |
-| FABRIC | leaf1 | 172.16.1.71/32 |
-| FABRIC | leaf2 | 172.16.1.71/32 |
-| FABRIC | leaf3 | 172.16.1.73/32 |
-| FABRIC | leaf4 | 172.16.1.73/32 |
+| FABRIC | leaf1 | 172.16.1.1/32 |
+| FABRIC | leaf2 | 172.16.1.1/32 |
+| FABRIC | leaf3 | 172.16.1.3/32 |
+| FABRIC | leaf4 | 172.16.1.3/32 |
