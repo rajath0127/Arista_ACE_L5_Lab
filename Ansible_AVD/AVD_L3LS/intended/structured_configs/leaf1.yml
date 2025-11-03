@@ -52,6 +52,10 @@ router_bgp:
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65100'
     description: spine3_Ethernet3
+  - ip_address: 10.10.1.6
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65100'
+    description: spine4_Ethernet3
   - ip_address: 172.16.0.11
     peer_group: EVPN-OVERLAY-PEERS
     description: spine1
@@ -63,6 +67,10 @@ router_bgp:
   - ip_address: 172.16.0.13
     peer_group: EVPN-OVERLAY-PEERS
     description: spine3
+    remote_as: '65100'
+  - ip_address: 172.16.0.14
+    peer_group: EVPN-OVERLAY-PEERS
+    description: spine4
     remote_as: '65100'
   redistribute_routes:
   - source_protocol: connected
@@ -268,6 +276,15 @@ ethernet_interfaces:
   mtu: 1550
   type: routed
   ip_address: 10.10.1.5/31
+- name: Ethernet6
+  peer: spine4
+  peer_interface: Ethernet3
+  peer_type: spine
+  description: P2P_LINK_TO_SPINE4_Ethernet3
+  shutdown: false
+  mtu: 1550
+  type: routed
+  ip_address: 10.10.1.7/31
 - name: Ethernet7
   peer: host1
   peer_interface: Ethernet1

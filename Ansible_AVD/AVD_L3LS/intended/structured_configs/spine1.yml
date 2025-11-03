@@ -35,15 +35,15 @@ router_bgp:
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65101'
     description: leaf1_Ethernet3
-  - ip_address: 10.10.1.7
+  - ip_address: 10.10.1.9
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65101'
     description: leaf2_Ethernet3
-  - ip_address: 10.10.1.13
+  - ip_address: 10.10.1.17
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65103'
     description: leaf3_Ethernet3
-  - ip_address: 10.10.1.19
+  - ip_address: 10.10.1.25
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65103'
     description: leaf4_Ethernet3
@@ -113,7 +113,7 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   type: routed
-  ip_address: 10.10.1.6/31
+  ip_address: 10.10.1.8/31
 - name: Ethernet5
   peer: leaf3
   peer_interface: Ethernet3
@@ -122,7 +122,7 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   type: routed
-  ip_address: 10.10.1.12/31
+  ip_address: 10.10.1.16/31
 - name: Ethernet6
   peer: leaf4
   peer_interface: Ethernet3
@@ -131,7 +131,7 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   type: routed
-  ip_address: 10.10.1.18/31
+  ip_address: 10.10.1.24/31
 loopback_interfaces:
 - name: Loopback0
   description: EVPN_Overlay_Peering

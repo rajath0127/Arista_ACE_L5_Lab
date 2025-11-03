@@ -40,18 +40,22 @@ router_bgp:
   - ip_address: 10.255.251.0
     peer_group: MLAG-IPv4-UNDERLAY-PEER
     description: leaf1
-  - ip_address: 10.10.1.6
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65100'
-    description: spine1_Ethernet4
   - ip_address: 10.10.1.8
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65100'
-    description: spine2_Ethernet4
+    description: spine1_Ethernet4
   - ip_address: 10.10.1.10
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65100'
+    description: spine2_Ethernet4
+  - ip_address: 10.10.1.12
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65100'
     description: spine3_Ethernet4
+  - ip_address: 10.10.1.14
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65100'
+    description: spine4_Ethernet4
   - ip_address: 172.16.0.11
     peer_group: EVPN-OVERLAY-PEERS
     description: spine1
@@ -63,6 +67,10 @@ router_bgp:
   - ip_address: 172.16.0.13
     peer_group: EVPN-OVERLAY-PEERS
     description: spine3
+    remote_as: '65100'
+  - ip_address: 172.16.0.14
+    peer_group: EVPN-OVERLAY-PEERS
+    description: spine4
     remote_as: '65100'
   redistribute_routes:
   - source_protocol: connected
@@ -249,7 +257,7 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   type: routed
-  ip_address: 10.10.1.7/31
+  ip_address: 10.10.1.9/31
 - name: Ethernet4
   peer: spine2
   peer_interface: Ethernet4
@@ -258,7 +266,7 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   type: routed
-  ip_address: 10.10.1.9/31
+  ip_address: 10.10.1.11/31
 - name: Ethernet5
   peer: spine3
   peer_interface: Ethernet4
@@ -267,7 +275,16 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   type: routed
-  ip_address: 10.10.1.11/31
+  ip_address: 10.10.1.13/31
+- name: Ethernet6
+  peer: spine4
+  peer_interface: Ethernet4
+  peer_type: spine
+  description: P2P_LINK_TO_SPINE4_Ethernet4
+  shutdown: false
+  mtu: 1550
+  type: routed
+  ip_address: 10.10.1.15/31
 - name: Ethernet7
   peer: host1
   peer_interface: Ethernet2
