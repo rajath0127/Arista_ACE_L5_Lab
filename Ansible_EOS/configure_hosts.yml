@@ -74,3 +74,11 @@
             ipv4:
               - address: 10.120.1.12/24
         state: merged
+
+- name: Configure IP routing on Spines
+  hosts: spines
+  tasks:
+    - name: Configure IP routing
+      arista.eos.eos_config:
+        lines:
+          - ip routing
