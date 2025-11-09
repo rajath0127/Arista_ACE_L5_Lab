@@ -20,4 +20,4 @@
     - name: Write CVP_CHANGE output to a file
       copy:
         content: "{{ CVP_CHANGE | to_yaml }}"
-        dest: "./cvp_change_debug.yml"
+        dest: "./Debug_logs/cvp_change_debug.yml"

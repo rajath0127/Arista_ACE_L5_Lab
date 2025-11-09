@@ -27,4 +27,12 @@ all:
         leaf1:
         leaf2:
         leaf3:
-        leaf4:    
+        leaf4:  
+    edgehosts:
+      hosts:
+        host1:
+        host2:
+        host3:
+        host4:
+        
+       

@@ -17,4 +17,4 @@
     - name: Write CVP_FACTS output to a file
       copy:
         content: "{{ CVP_FACTS | to_yaml }}"
-        dest: "./cvp_facts_debug.yml"
+        dest: "./Debug_logs/cvp_facts_debug.yml"

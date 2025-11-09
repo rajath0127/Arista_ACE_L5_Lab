@@ -1,0 +1,57 @@
+changed: false
+data:
+  cvp_configlets: []
+  cvp_containers: []
+  cvp_devices: []
+  cvp_images: []
+  cvp_tasks:
+    '430':
+      ccId: ''
+      ccIdV2: ''
+      createdBy: arista
+      description: 'Configlet Assign: leaf4.arista.lab Current IP: 192.168.0.24 Target
+        IP: automatic'
+      workOrderDetails: {ipAddress: 192.168.0.24, netElementHostName: leaf4.arista.lab,
+        netElementId: '00:1c:73:c4:c6:01', serialNumber: leaf4, workOrderDetailsId: '',
+        workOrderId: ''}
+      workOrderId: '430'
+      workOrderState: ACTIVE
+      workOrderUserDefinedStatus: Pending
+    '431':
+      ccId: ''
+      ccIdV2: ''
+      createdBy: arista
+      description: 'Configlet Assign: leaf1.arista.lab Current IP: 192.168.0.21 Target
+        IP: automatic'
+      workOrderDetails: {ipAddress: 192.168.0.21, netElementHostName: leaf1.arista.lab,
+        netElementId: '00:1c:73:c1:c6:01', serialNumber: leaf1, workOrderDetailsId: '',
+        workOrderId: ''}
+      workOrderId: '431'
+      workOrderState: ACTIVE
+      workOrderUserDefinedStatus: Pending
+    '432':
+      ccId: ''
+      ccIdV2: ''
+      createdBy: arista
+      description: 'Configlet Assign: leaf2.arista.lab Current IP: 192.168.0.22 Target
+        IP: automatic'
+      workOrderDetails: {ipAddress: 192.168.0.22, netElementHostName: leaf2.arista.lab,
+        netElementId: '00:1c:73:c2:c6:01', serialNumber: leaf2, workOrderDetailsId: '',
+        workOrderId: ''}
+      workOrderId: '432'
+      workOrderState: ACTIVE
+      workOrderUserDefinedStatus: Pending
+    '433':
+      ccId: ''
+      ccIdV2: ''
+      createdBy: arista
+      description: 'Configlet Assign: leaf3.arista.lab Current IP: 192.168.0.23 Target
+        IP: automatic'
+      workOrderDetails: {ipAddress: 192.168.0.23, netElementHostName: leaf3.arista.lab,
+        netElementId: '00:1c:73:c3:c6:01', serialNumber: leaf3, workOrderDetailsId: '',
+        workOrderId: ''}
+      workOrderId: '433'
+      workOrderState: ACTIVE
+      workOrderUserDefinedStatus: Pending
+    total_tasks: 4
+failed: false
