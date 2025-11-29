@@ -1,0 +1,8 @@
+---
+static_route:
+  dest: 10.120.1.0/24
+  next_hop: 10.110.1.1
+
+l3_interface:
+  intf: Port-Channel12
+  ip_address: 10.110.1.12/24
