@@ -1,0 +1,72 @@
+---
+- name: Configure hosts
+  hosts: host1, host2
+  vars:
+    device_vars:
+      host1:
+        static_route:
+          dest: 10.120.1.0/24
+          next_hop: 10.110.1.1
+        l3_interface:
+          intf: Port-channel12
+          ip_address: 10.110.1.20/24
+      device_vars:
+      host2:
+        static_route:
+          dest: 10.110.1.0/24
+          next_hop: 10.120.1.1
+        l3_interface:
+          intf: Port-channel12
+          ip_address: 10.120.1.20/24
+
+  tasks:
+    - name: Configure static route
+      arista.eos.eos_static_routes:
+        config:
+          - address_families:
+              - afi: ipv4
+                routes:
+                  - dest: "{{ device_vars[inventory_hostname].static_route.dest }}"
+                    next_hops:
+                      - forward_router_address: "{{ device_vars[inventory_hostname].static_route.next_hop }}"
+        state: merged
+    - name: Create Port-Channel
+      arista.eos.eos_lag_interfaces:
+        config:
+          - name: "{{ device_vars[inventory_hostname].l3_interface.intf }}"
+            members:
+              - member: Ethernet1
+                mode: "active"
+              - member: Ethernet2
+                mode: "active"
+        state: merged
+    - name: Configure Port-Channel as L3
+      arista.eos.eos_interfaces:
+        config:
+          - name: "{{ device_vars[inventory_hostname].l3_interface.intf }}"
+            enabled: true
+            mode: layer3
+        state: merged
+    - name: Configure IP address for L3 interface
+      arista.eos.eos_l3_interfaces:
+        config:
+          - name: "{{ device_vars[inventory_hostname].l3_interface.intf }}"
+            ipv4:
+              - address: "{{ device_vars[inventory_hostname].l3_interface.ip_address }}"
+        state: merged
+
+- name: Configure IP routing on Spines
+  hosts: spines, host1, host2
+  tasks:
+    - name: Configure IP routing
+      arista.eos.eos_config:
+        lines:
+          - ip routing
+
+- name: Save configs on devices
+  hosts: spines, host1, host2
+  tasks:
+    - name: Save configs
+      arista.eos.eos_command:
+        commands:
+          - copy running-config startup-config
