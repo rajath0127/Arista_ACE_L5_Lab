@@ -44,7 +44,7 @@
       arista.eos.eos_config:
         lines:
           - ip routing
-          
+
 - name: Save configs on devices
   hosts: spines, host1, host2
   tasks:
