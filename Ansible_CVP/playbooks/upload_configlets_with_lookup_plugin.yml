@@ -1,0 +1,22 @@
+---
+- name: Playbook for uploading configlets to CloudVision
+  hosts: cvp1
+  vars_files:
+    - ../vars/CVP_model.yml
+  vars:
+    path: "{{ lookup('env', 'PWD') }}"
+    repo_root: "{{ playbook_dir | realpath | dirname }}"
+  
+  tasks:
+    - name: Fetch configlets using Python
+      set_fact:
+        CVP_CONFIGLET: "{{ lookup('pipe', 'python3 get_configlets_v1.py') | from_json }}"
+
+    - name: Upload configlets
+      arista.cvp.cv_configlet_v3:
+        configlets: "{{ CVP_CONFIGLET }}"
+        state: present
+    
+    - name: Print Configlet dict
+      debug:
+        msg: "{{ CVP_CONFIGLET | to_yaml }}"
