@@ -3,8 +3,37 @@
   hosts: cvp1
   vars_files:
     - ../vars/CVP_model.yml
+  vars:
+    path: "{{ lookup('env', 'PWD') }}"
+    repo_root: "{{ playbook_dir | realpath | dirname }}"
+  
   tasks:
+    - name: Find all configlet files
+      ansible.builtin.find:
+        paths: "{{ repo_root }}/configlets/configs"
+        patterns: "*.cfg"
+        recurse: yes
+      register: cfg_files
+    
+    - name: Build configlet dictionary
+      set_fact:
+        CVP_CONFIGLET: >-
+          {{ CVP_CONFIGLET | default({}) |
+            combine({
+              (item.path | basename | replace('.cfg','')):
+              lookup('file', item.path)
+            })
+          }}
+      loop: "{{ cfg_files.files }}"
+
+    # - name: Generate configlets
+    #   set_fact:
+    #     CVP_CONFIGLET: >-
+    #       {{ CVP_CONFIGLET | default({}) | combine({(item | basename | 
+    #       regex_replace('\\.cfg$', '')): lookup('file', item)}) }}
+    #   loop: "{{ lookup('fileglob', repo_root + '/configlets/configs/*/*.cfg', wantlist=True) }}"
+    
     - name: Upload configlets
       arista.cvp.cv_configlet_v3:
-        configlets: "{{ CVP_CONFIGLETS }}"
+        configlets: "{{ CVP_CONFIGLET }}"
         state: present
