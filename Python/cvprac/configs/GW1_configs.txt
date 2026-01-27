@@ -1,0 +1,125 @@
+service routing protocols model multi-agent
+
+spanning-tree mode mstp
+!
+vlan 10,20,30
+!
+vrf instance ABC
+!
+interface Ethernet1
+   no switchport
+   ip address 10.10.10.6/30
+!
+interface Ethernet2
+   no switchport
+   ip address 10.10.10.9/30
+   isis enable CORE
+   isis network point-to-point
+!
+interface Ethernet3
+   switchport access vlan 20
+
+interface Loopback0
+   ip address 172.16.10.3/32
+   node-segment ipv4 index 3
+   isis enable CORE
+
+interface Vlan10
+   no autostate
+!
+interface Vlan20
+   no autostate
+   vrf ABC
+   ip address 192.168.2.1/24
+!
+interface Vlan30
+   no autostate
+   vrf ABC
+   ip address 192.168.3.11/24
+!
+interface Vxlan1
+   vxlan source-interface Loopback0
+   vxlan udp-port 4789
+   vxlan vlan 10 vni 1010
+   vxlan vlan 20 vni 2020
+   vxlan vlan 30 vni 3030
+   vxlan vrf ABC vni 5050
+!
+ip routing
+ip routing vrf ABC
+!
+ip prefix-list ldp-fec-prefix-list
+   seq 10 permit 172.16.10.0/24 ge 24
+!
+mpls ip
+!
+mpls ldp
+   fec filter prefix-list ldp-fec-prefix-list
+!
+router bgp 65003
+   router-id 172.16.10.3
+   no bgp default ipv4-unicast
+   bgp bestpath d-path
+   neighbor 10.10.10.5 remote-as 65002
+   neighbor 172.16.10.2 remote-as 65002
+   neighbor 172.16.10.2 update-source Loopback0
+   neighbor 172.16.10.2 ebgp-multihop
+   neighbor 172.16.10.2 send-community extended
+   neighbor 172.16.10.4 remote-as 65004
+   neighbor 172.16.10.4 update-source Loopback0
+   neighbor 172.16.10.4 ebgp-multihop
+   neighbor 172.16.10.4 send-community extended
+   !
+   vlan 10
+      rd 172.16.10.3:1010
+      rd evpn domain remote 172.16.10.3:10010
+      route-target both 1010:1010
+      route-target import export evpn domain remote 10010:10010
+      redistribute learned
+   !
+   vlan 20
+      rd 172.16.10.3:2020
+      rd evpn domain remote 172.16.10.3:20020
+      route-target both 2020:2020
+      route-target import export evpn domain remote 20020:20020
+      redistribute learned
+   !
+   vlan 30
+      rd 172.16.10.3:3030
+      rd evpn domain remote 172.16.10.3:30030
+      route-target both 3030:3030
+      route-target import export evpn domain remote 30030:30030
+      redistribute learned
+   !
+   address-family evpn
+      neighbor 172.16.10.2 activate
+      neighbor 172.16.10.4 activate
+      neighbor 172.16.10.4 domain remote
+      domain identifier 65003:34
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix inter-domain
+   !
+   address-family ipv4
+      neighbor 10.10.10.5 activate
+      network 172.16.10.3/32
+   !
+   address-family vpn-ipv4
+      neighbor 172.16.10.4 activate
+   !
+   vrf ABC
+      rd 172.16.10.3:5050
+      route-target import evpn 5050:5050
+      route-target import vpn-ipv4 50050:50050
+      route-target export evpn 5050:5050
+      route-target export vpn-ipv4 50050:50050
+      redistribute connected
+!
+router isis CORE
+   net 49.0000.0000.0001.00
+   is-type level-1
+   !
+   address-family ipv4 unicast
+   !
+   segment-routing mpls
+      router-id 172.16.10.3
+      no shutdown
+!
