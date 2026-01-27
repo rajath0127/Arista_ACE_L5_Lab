@@ -11,5 +11,6 @@ CVP_CONFIGLET = {}
 
 for f in CONFIG_DIR.rglob("*.cfg"):
     CVP_CONFIGLET[f.stem] = f.read_text()
+    #print(f)
 
 print(json.dumps(CVP_CONFIGLET))

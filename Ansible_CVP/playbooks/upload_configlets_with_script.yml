@@ -10,6 +10,8 @@
   tasks:
     - name: Run Python script to fetch config info
       script: ../scripts/get_configlets_v2.py {{ repo_root }}
+      delegate_to: localhost
+      run_once: true
       register: script_output
 
     - name: Parse output of Python script to create configlets
